@@ -18,7 +18,7 @@ O projeto deverá estar com um ambiente de testes configurado acessando o banco 
 
 # Modelo Conceitual
 
-![Modelo](https://github.com/galetedanilo/cadclient/blob/master/assets/sds3-mc.png)
+![Modelo](https://github.com/galetedanilo/cadclient/blob/master/assets/modelo.png)
 
 # Padrão Camada
 
