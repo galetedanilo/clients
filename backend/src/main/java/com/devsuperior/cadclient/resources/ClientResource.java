@@ -1,5 +1,6 @@
 package com.devsuperior.cadclient.resources;
 
+import java.io.Serializable;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,15 @@ import com.devsuperior.cadclient.services.ClientService;
 
 @RestController
 @RequestMapping(value = "/clients")
-public class ClientResource {
+public class ClientResource implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Autowired
 	private ClientService service;
 	
 	@GetMapping
 	public ResponseEntity<Page<ClientDTO>> findAll(Pageable pageable) {
-				
 		Page<ClientDTO> list = service.findAllPaged(pageable);
-		
 		
 		return ResponseEntity.ok().body(list);
 	}

@@ -26,6 +26,15 @@ public class ClientService implements Serializable {
 	@Autowired
 	private ClientRepository repository;
 	
+	
+	private void copyDtoToEntity(ClientDTO dto, Client entity) {
+		entity.setName(dto.getName());
+		entity.setCpf(dto.getCpf());
+		entity.setIncome(dto.getIncome());
+		entity.setBirthDate(dto.getBirthDate());
+		entity.setChildren(dto.getChildren());
+	}
+	
 	@Transactional(readOnly = true)
 	public Page<ClientDTO> findAllPaged(Pageable pageable) {
 		Page<Client> list = repository.findAll(pageable);
@@ -56,7 +65,7 @@ public class ClientService implements Serializable {
 	@Transactional
 	public ClientDTO update(Long id, ClientDTO dto) {
 		try {
-			Client entity = repository.getOne(id);
+			Client entity = repository.getById(id);
 			
 			copyDtoToEntity(dto, entity);
 			
@@ -77,14 +86,5 @@ public class ClientService implements Serializable {
 			throw new DatabaseException("Integrity violation");
 		}	
 	}
-	
-	private void copyDtoToEntity(ClientDTO dto, Client entity) {
-		entity.setName(dto.getName());
-		entity.setCpf(dto.getCpf());
-		entity.setIncome(dto.getIncome());
-		entity.setBirthDate(dto.getBirthDate());
-		entity.setChildren(dto.getChildren());
-	}
-	
 
 }
