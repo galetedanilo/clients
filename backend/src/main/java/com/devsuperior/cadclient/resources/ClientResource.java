@@ -30,9 +30,9 @@ public class ClientResource implements Serializable {
 	
 	@GetMapping
 	public ResponseEntity<Page<ClientDTO>> findAll(Pageable pageable) {
-		Page<ClientDTO> list = service.findAllPaged(pageable);
+		Page<ClientDTO> page = service.findAllPaged(pageable);
 		
-		return ResponseEntity.ok().body(list);
+		return ResponseEntity.ok().body(page);
 	}
 	
 	@GetMapping(value = "/{id}")

@@ -37,9 +37,9 @@ public class ClientService implements Serializable {
 	
 	@Transactional(readOnly = true)
 	public Page<ClientDTO> findAllPaged(Pageable pageable) {
-		Page<Client> list = repository.findAll(pageable);
+		Page<Client> page = repository.findAll(pageable);
 		
-		return list.map(client -> new ClientDTO(client));
+		return page.map(client -> new ClientDTO(client));
 	}
 	
 	@Transactional(readOnly = true)
