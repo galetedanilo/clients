@@ -19,21 +19,15 @@ import com.devsuperior.cadclient.repositories.ClientRepository;
 import com.devsuperior.cadclient.services.exceptions.DatabaseException;
 import com.devsuperior.cadclient.services.exceptions.ResourceNotFoundException;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class ClientService implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Autowired
-	private ClientRepository repository;
+	private final ClientRepository repository;
 	
-	
-	private void copyDtoToEntity(ClientDTO dto, Client entity) {
-		entity.setName(dto.getName());
-		entity.setCpf(dto.getCpf());
-		entity.setIncome(dto.getIncome());
-		entity.setBirthDate(dto.getBirthDate());
-		entity.setChildren(dto.getChildren());
-	}
 	
 	@Transactional(readOnly = true)
 	public Page<ClientDTO> findAllPaged(Pageable pageable) {
