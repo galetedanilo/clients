@@ -1,4 +1,4 @@
-package com.devsuperior.cadclient.resources.exceptions;
+package com.devsuperior.cadclient.controllers.exceptions;
 
 import java.time.Instant;
 
@@ -13,7 +13,7 @@ import com.devsuperior.cadclient.services.exceptions.DatabaseException;
 import com.devsuperior.cadclient.services.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice
-public class ResourceExceptionHandler {
+public class ControllerExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request) {

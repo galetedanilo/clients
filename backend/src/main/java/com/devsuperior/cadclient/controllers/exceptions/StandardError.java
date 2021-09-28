@@ -1,4 +1,4 @@
-package com.devsuperior.cadclient.resources.exceptions;
+package com.devsuperior.cadclient.controllers.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;
