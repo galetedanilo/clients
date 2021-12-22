@@ -41,7 +41,7 @@ Pré-requisito: Java 11
 
 ```bash
 # clonar repositório
-git clone https://github.com/galetedanilo/cadclient.git
+git clone https://github.com/galetedanilo/clients.git
 
 # entrar na pasta do back end
 cd backend
