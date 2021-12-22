@@ -1,13 +1,13 @@
-package com.devsuperior.cadclient;
+package com.galetedanilo.clients;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CadclientApplication {
+public class ClientsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CadclientApplication.class, args);
+		SpringApplication.run(ClientsApplication.class, args);
 	}
 
 }
