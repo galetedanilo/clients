@@ -1,8 +1,8 @@
-# CadClient
+# Clients
 
 # Sobre o projeto
 
-CadClient é uma aplicação back end desenvolvida com Spring Boot para implementar um CRUD completo de web services REST para acessar um recurso de cliente, que foi solicitado como um trabalho de final do primeiro capítulo do Bootcamp Spring React da DevSuperior.
+Clients é uma aplicação back end desenvolvida com Spring Boot para implementar um CRUD completo de web services REST para acessar um recurso de cliente, que foi solicitado como um trabalho de final do primeiro capítulo do Bootcamp Spring React da DevSuperior.
 
 # Enunciado do trabalho
 
