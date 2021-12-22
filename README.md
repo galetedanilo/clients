@@ -6,7 +6,7 @@ Clients é uma aplicação back end desenvolvida com Spring Boot para implementa
 
 # Enunciado do trabalho
 
-Você deverá entregar um projeto Spring Boot 2.4.x contendo um CRUD completo de web services REST para acessar um recurso de clientes, contendo as cinco operações básicas aprendidas no capítulo:
+Você deverá entregar um projeto Spring Boot 2.6.x contendo um CRUD completo de web services REST para acessar um recurso de clientes, contendo as cinco operações básicas aprendidas no capítulo:
 
 - Busca paginada de recursos
 - Busca de recurso por id
@@ -37,7 +37,7 @@ O projeto deverá estar com um ambiente de testes configurado acessando o banco 
 
 ## Back end:
 
-Pré-requisito: Java 11
+Pré-requisito: Java 17
 
 ```bash
 # clonar repositório
