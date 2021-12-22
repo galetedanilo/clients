@@ -27,7 +27,6 @@ public class ClientRequest implements Serializable {
     private String email;
     @CPF(message = "The CPF is required")
     private String cpf;
-    @NotBlank(message = "The amount is required")
     private BigDecimal amount;
     @PositiveOrZero(message = "Positive number")
     private Integer children;

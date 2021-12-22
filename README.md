@@ -14,7 +14,7 @@ Você deverá entregar um projeto Spring Boot 2.6.x contendo um CRUD completo de
 - Atualizar recurso
 - Deletar recurso
 
-O projeto deverá estar com um ambiente de testes configurado acessando o banco de dados H2, deverá usar Maven como gerenciador de dependência e Java 11 como linguagem
+O projeto deverá estar com um ambiente de testes configurado acessando o banco de dados H2, deverá usar Maven como gerenciador de dependência e Java 17 como linguagem
 
 # Modelo Conceitual
 

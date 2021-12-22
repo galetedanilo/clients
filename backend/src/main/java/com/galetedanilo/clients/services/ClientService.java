@@ -12,6 +12,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.Instant;
@@ -23,6 +24,7 @@ public class ClientService {
 
     private final ClientRepository clientRepository;
 
+    @Transactional(readOnly = true)
     public ClientResponse findClientByPrimaryKey(Long id) {
         Optional<Client> optionalClient = clientRepository.findById(id);
 
@@ -31,15 +33,19 @@ public class ClientService {
         return new ClientResponse(entityClient);
     }
 
+    @Transactional(readOnly = true)
     public Page<ClientResponse> findAllClients(Pageable pageable) {
         Page<Client> pageClients = clientRepository.findAll(pageable);
 
-        return pageClients.map(obj -> new ClientResponse(obj));
+        return pageClients.map(ClientResponse::new);
     }
 
+    @Transactional
     public ClientResponse saveNewClient(ClientRequest clientRequest) {
 
-        Client clientEntity = mapperClientRequestToClient(clientRequest);
+        Client clientEntity = new Client();
+
+        mapperClientRequestToClient(clientEntity, clientRequest);
 
         clientEntity.setCreatedAt(Instant.now());
 
@@ -48,18 +54,20 @@ public class ClientService {
         return  new ClientResponse(clientEntity);
     }
 
+    @Transactional
     public ClientResponse updateClient(Long id, ClientRequest clientRequest) {
         try {
-            Client clientEntity = mapperClientRequestToClient(clientRequest);
+            Client clientEntity = clientRepository.getById(id);
 
-            clientEntity.setId(id);
+            mapperClientRequestToClient(clientEntity, clientRequest);
+
             clientEntity.setUpdatedAt(Instant.now());
 
             clientEntity = clientRepository.save(clientEntity);
 
             return new ClientResponse(clientEntity);
         } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException("Resource not found");
+            throw new ResourceNotFoundException("Client by Id " + id + " not found");
         }
     }
 
@@ -73,9 +81,7 @@ public class ClientService {
         }
     }
 
-    private Client mapperClientRequestToClient(ClientRequest clientRequest) {
-        Client client = new Client();
-
+    private void mapperClientRequestToClient(Client client, ClientRequest clientRequest) {
         client.setFirstName(clientRequest.getFirstName());
         client.setLastName(clientRequest.getLastName());
         client.setEmail(clientRequest.getEmail());
@@ -83,8 +89,6 @@ public class ClientService {
         client.setBirthDate(clientRequest.getBirthDate());
         client.setChildren(clientRequest.getChildren());
         client.setAmount(clientRequest.getAmount());
-
-        return client;
     }
 
 }

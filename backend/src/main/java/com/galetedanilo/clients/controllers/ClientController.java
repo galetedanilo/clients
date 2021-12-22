@@ -27,7 +27,7 @@ public class ClientController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ClientResponse> findClieByPrimaryKey(@PathVariable Long id) {
+    public ResponseEntity<ClientResponse> findClientByPrimaryKey(@PathVariable Long id) {
         ClientResponse clientResponse = clientService.findClientByPrimaryKey(id);
 
         return new ResponseEntity<>(clientResponse, HttpStatus.OK);
