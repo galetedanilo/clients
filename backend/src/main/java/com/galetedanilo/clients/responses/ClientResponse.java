@@ -2,6 +2,7 @@ package com.galetedanilo.clients.responses;
 
 import com.galetedanilo.clients.entities.Client;
 import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,11 +13,11 @@ import java.time.Instant;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientResponse implements Serializable {
+public class ClientResponse extends RepresentationModel<ClientResponse> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private Long clientId;
     private String firstName;
     private String lastName;
     private String email;
@@ -28,7 +29,7 @@ public class ClientResponse implements Serializable {
     private Instant updatedAt;
 
     public ClientResponse(Client entityClient) {
-        this.id = entityClient.getId();
+        this.clientId = entityClient.getId();
         this.firstName = entityClient.getFirstName();
         this.lastName = entityClient.getLastName();
         this.email = entityClient.getEmail();
