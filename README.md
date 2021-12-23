@@ -30,6 +30,9 @@ O projeto deverá estar com um ambiente de testes configurado acessando o banco 
 
 - Java
 - Spring Boot
+- Validation
+- Hateoas
+- Lombok
 - JPA / Hibernate
 - Maven
 
