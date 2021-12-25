@@ -33,7 +33,7 @@ public class ClientController {
                     );
 
                     clientResponse.add(WebMvcLinkBuilder
-                            .linkTo(WebMvcLinkBuilder.methodOn(ClientController.class).findAllClients(PageRequest.of(0, 20)))
+                            .linkTo(WebMvcLinkBuilder.methodOn(ClientController.class).deleteClientByPrimaryKey(clientResponse.getClientId()))
                             .withRel("Delete clients")
                     );
                 }
