@@ -26,7 +26,7 @@ public class ClientRequest implements Serializable {
     @CPF(message = "The CPF is required")
     private String cpf;
     @DecimalMin(value = "0.0", inclusive = false, message = "Amount of being a value greater than zero")
-    @DecimalMax(value = "100000.00", inclusive = false, message = "Amount of being a value less than one hundred thousand")
+    @DecimalMax(value = "100000.00", inclusive = false, message = "Amount cannot be greater than one hundred thousand")
     @Digits(integer = 6, fraction = 2)
     private BigDecimal amount;
     @PositiveOrZero(message = "Positive number")
