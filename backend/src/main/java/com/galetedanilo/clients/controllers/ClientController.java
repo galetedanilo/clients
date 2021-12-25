@@ -34,7 +34,7 @@ public class ClientController {
 
                     clientResponse.add(WebMvcLinkBuilder
                             .linkTo(WebMvcLinkBuilder.methodOn(ClientController.class).findAllClients(PageRequest.of(0, 20)))
-                            .withRel("Find all clients")
+                            .withRel("Delete clients")
                     );
                 }
         );
