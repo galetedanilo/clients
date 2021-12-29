@@ -15,12 +15,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class ClientService {
+public class ClientService implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private final ClientRepository clientRepository;
 

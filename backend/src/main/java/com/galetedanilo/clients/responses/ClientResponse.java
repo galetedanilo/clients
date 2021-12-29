@@ -1,9 +1,13 @@
 package com.galetedanilo.clients.responses;
 
+import com.galetedanilo.clients.controllers.ClientController;
 import com.galetedanilo.clients.entities.Client;
 import lombok.*;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -15,9 +19,10 @@ import java.time.Instant;
 @AllArgsConstructor
 public class ClientResponse extends RepresentationModel<ClientResponse> implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
-    private Long clientId;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -29,7 +34,7 @@ public class ClientResponse extends RepresentationModel<ClientResponse> implemen
     private Instant updatedAt;
 
     public ClientResponse(Client entityClient) {
-        this.clientId = entityClient.getId();
+        this.id = entityClient.getId();
         this.firstName = entityClient.getFirstName();
         this.lastName = entityClient.getLastName();
         this.email = entityClient.getEmail();
@@ -39,5 +44,20 @@ public class ClientResponse extends RepresentationModel<ClientResponse> implemen
         this.birthDate = entityClient.getBirthDate();
         this.createdAt = entityClient.getCreatedAt();
         this.updatedAt = entityClient.getUpdatedAt();
+
+        this.add(WebMvcLinkBuilder
+                .linkTo(WebMvcLinkBuilder.methodOn(ClientController.class).findClientByPrimaryKey(id))
+                .withSelfRel()
+        );
+
+        this.add(WebMvcLinkBuilder
+                .linkTo(WebMvcLinkBuilder.methodOn(ClientController.class).deleteClientByPrimaryKey(id))
+                .withRel("Delete client")
+        );
+
+        this.add(WebMvcLinkBuilder
+                .linkTo(WebMvcLinkBuilder.methodOn(ClientController.class).findAllClients(PageRequest.of(0, 20)))
+                .withRel("Find all clients")
+        );
     }
 }
