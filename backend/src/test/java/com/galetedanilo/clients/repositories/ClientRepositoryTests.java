@@ -1,7 +1,7 @@
-package com.galetedanilo.clients.entities;
+package com.galetedanilo.clients.repositories;
 
+import com.galetedanilo.clients.entities.Client;
 import com.galetedanilo.clients.factories.ClientFactory;
-import com.galetedanilo.clients.repositories.ClientRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @DataJpaTest
-public class ClientEntitiesTests {
+public class ClientRepositoryTests {
 
     @Autowired
     private ClientRepository clientRepository;
@@ -48,6 +48,18 @@ public class ClientEntitiesTests {
         client = clientRepository.save(client);
 
         Assertions.assertNotNull(client.getId());
+    }
+
+    @Test
+    public void updateClientShouldThrowEntityNotFoundExceptionWhenIdDoesNotExisting() {
+        Assertions.assertThrows(EntityNotFoundException.class, () -> {
+            Client client = clientRepository.getById(nonExistingId);
+
+            client.setFirstName("João");
+            client.setLastName("Carlos");
+
+            client = clientRepository.save(client);
+        });
     }
 
     @Test
